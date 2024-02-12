@@ -1,7 +1,7 @@
 const endpoints = {
-    homePath:"/",
-    oders:{
-        addOrder:"/order/add"
+    homePath: "/",
+    oders: {
+        addOrder: "/order/add",
     }
 
 }
