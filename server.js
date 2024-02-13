@@ -142,7 +142,7 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-///un_authorized routes
+///un_authorized routes all user routes / user can only acess
 //get all food items
 //no-middelware needed
 
