@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const AdminMiddleware = require('./app/Middlewares/AdminMiddleware');
 const Order = require('./app/Models/oderModel');
 
+const Room = require('../models/Room');
+
 const port = 4000;
 app.use(express.json());
 app.use(cors());
@@ -142,6 +144,122 @@ app.post('/signup', async (req, res) => {
   }
 });
 
+////////super_admin routes
+//get all fooditems // done with user use that part
+//edit foodItems
+//delete fooditems
+//add categories in food
+//edit categories  in food
+//del catgo // no needed if cat needed to update it can be done if it need to delete whole food Item need to to deleted
+//get orderItems
+//del order
+//add rooms
+//update rooms
+// del rooms
+
+// Edit a food item
+// Edit a category in food
+
+app.put('/foodItems/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    // const { name, category, image, price, itemType } = req.body;
+    const check = await Food.findById(id);
+    if (!check) {
+      res.status(401).json({ error: 'Food with this Id not found!' });
+      return;
+    }
+
+    // {
+    //   updated: 'field';
+    // }
+    //added body because super_admin can only update one part
+    const updatedFoodItem = await Food.findByIdAndUpdate(id, body, {
+      new: true,
+    });
+
+    res.status(200).json(updatedFoodItem);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get order items
+//middelware need to be added
+app.get('/orderItems', async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.status(200).json({ allOrders: orders });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Delete an order
+app.delete('/orders/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const check = await Order.findById(id);
+    if (!check) {
+      res.status(401).json({ error: 'Order with this Id not found!' });
+      return;
+    }
+
+    // we can add second validation while deleting
+    await Order.findByIdAndDelete(id);
+    res.status(204).end();
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Add a room
+app.post('/rooms', async (req, res) => {
+  try {
+    const { name, RoomNumber } = req.body;
+    const room = await Room.create({ name, RoomNumber });
+    res.status(201).json(room);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Update a room
+app.put('/rooms/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    //const { name, RoomNumber } = req.body;
+    const body = req.body;
+    const check = await Room.findById(id);
+    if (!check) {
+      res.status(401).json({ error: 'Room with this Id not found!' });
+      return;
+    }
+    const updatedRoom = await Room.findByIdAndUpdate(id, body, { new: true });
+    res.status(200).json(updatedRoom);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Delete a room
+app.delete('/rooms/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const check = await Room.findById(id);
+    if (!check) {
+      res.status(401).json({ error: 'Room with this Id not found!' });
+      return;
+    }
+    await Room.findByIdAndDelete(id);
+    res.status(204).josn({ mesg: 'deleted Room...' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///un_authorized routes all user routes / user can only acess
 //get all food items
 //no-middelware needed
