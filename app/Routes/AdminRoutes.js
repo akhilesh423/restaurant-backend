@@ -2,6 +2,7 @@ const express = require('express');
 const AdminSignup = require('../Controllers/AdminSignup.js');
 const AdminSignin = require('../Controllers/Adminsignin.js')
 const AdminAddItem = require('../Controllers/AdminAddItem.js')
+const AdminGetItems = require('../Controllers/AdminGetItems.js')
 
 const AdminMiddleware = require('../Middlewares/AdminMiddleware');
 
@@ -15,5 +16,6 @@ router.post('/signin', (req, res) => {
 })
 
 router.post('/additems', AdminMiddleware, AdminAddItem);
+router.get('/getItems', AdminMiddleware, AdminGetItems)
 
 module.exports = router;
