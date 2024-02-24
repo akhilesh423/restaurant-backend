@@ -13,7 +13,7 @@ router.post('/signup', (req, res) => {
 
 router.post('/signin', (req, res) => {
     AdminSignin(req, res)
-})
+});
 
 router.post('/additems', AdminMiddleware, AdminAddItem);
 router.get('/getItems', AdminMiddleware, AdminGetItems)
