@@ -14,7 +14,7 @@ const AdminSigninSchema = zod.object({
 const AddNewItemSchema = zod.object({
     itemPrice: zod.number().positive(),
     itemName: zod.string(),
-    itemType: zod.string(),
+    itemType: zod.string().optional(),
     itemCategory: zod.string(),
     itemDescription: zod.string().max(200, { message: 'Description must be maximum 200 words' }),
     itemImage: zod.string()

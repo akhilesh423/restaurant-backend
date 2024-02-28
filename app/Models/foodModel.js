@@ -7,7 +7,7 @@ const FoodModel = new mongoose.Schema({
     itemImage: { type: String, required: true },
     itemPrice: { type: Number, required: true },
     itemDescription: { type: String, required: true },
-    itemType: { type: String, required: true }
+    itemType: { type: String, required: false }
 }, { timestamps: true })
 
 

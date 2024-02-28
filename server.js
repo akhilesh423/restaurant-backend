@@ -5,11 +5,16 @@ const adminRoutes = require('./app/Routes/AdminRoutes');
 const UserRoutes = require('./app/Routes/UserRoutes.js');
 require('dotenv').config();
 
+
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({ extended: false }))
+
+
 
 app.get('/', (req, res) => {
   res.send('Hello Bliss');
