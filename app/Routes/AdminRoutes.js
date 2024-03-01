@@ -19,5 +19,6 @@ router.post('/signin', (req, res) => {
 
 router.post('/additem', adminMiddleware, upload.single("itemImage"), adminAddItem);
 router.get('/getItems', adminMiddleware, adminGetItems)
+// router.put('/item/:id', adminMiddleware, adminUpdateItem);
 
 module.exports = router;
