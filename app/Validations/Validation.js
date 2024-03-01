@@ -1,17 +1,17 @@
 const zod = require('zod');
 
-const AdminSignupSchema = zod.object({
+const adminSignupSchema = zod.object({
     email: zod.string().email(),
     password: zod.string().min(5),
     name: zod.string(),
 });
 
-const AdminSigninSchema = zod.object({
+const adminSigninSchema = zod.object({
     email: zod.string().email(),
     password: zod.string().min(5),
 });
 
-const AddNewItemSchema = zod.object({
+const addNewItemSchema = zod.object({
     itemPrice: zod.number().positive(),
     itemName: zod.string(),
     itemType: zod.string().optional(),
@@ -22,7 +22,7 @@ const AddNewItemSchema = zod.object({
 
 
 module.exports = {
-    AdminSignupSchema,
-    AdminSigninSchema,
-    AddNewItemSchema
+    adminSignupSchema,
+    adminSigninSchema,
+    addNewItemSchema
 };

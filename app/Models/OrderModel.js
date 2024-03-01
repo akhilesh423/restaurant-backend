@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const OrderModel = new mongoose.Schema({
+const orderModel = new mongoose.Schema({
   room: { type: String, required: true },
   foodItems: [
     {
@@ -17,4 +17,4 @@ const OrderModel = new mongoose.Schema({
 
 }, { timestamps: true })
 
-module.exports = mongoose.model("OrderItems", OrderModel)
+module.exports = mongoose.model("orderItems", orderModel)

@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const AdminMiddleware = (req, res, next) => {
+const adminMiddleware = (req, res, next) => {
     const token = req.headers.authorization;
 
     if (!token) {
@@ -21,4 +21,4 @@ const AdminMiddleware = (req, res, next) => {
     }
 };
 
-module.exports = AdminMiddleware;
+module.exports = adminMiddleware;

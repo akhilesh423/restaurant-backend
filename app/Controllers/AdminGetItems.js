@@ -1,8 +1,8 @@
-const FoodModel = require('../Models/FoodModel.js');
+const foodModel = require('../models/foodModel.js');
 
-const AdminGetItems = async (req, res) => {
+const adminGetItems = async (req, res) => {
   try {
-    const allItems = await FoodModel.find();
+    const allItems = await foodModel.find();
     res.status(200).send(allItems);
   } catch (err) {
     console.error('Error fetching items:', err);
@@ -10,4 +10,4 @@ const AdminGetItems = async (req, res) => {
   }
 };
 
-module.exports = AdminGetItems;
+module.exports = adminGetItems;

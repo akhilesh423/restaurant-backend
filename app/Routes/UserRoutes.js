@@ -1,5 +1,5 @@
 const express = require('express');
-const UserGetItems = require('../Controllers/UserGetItems.js')
+const UserGetItems = require('../controllers/userGetItems.js')
 
 // const AdminMiddleware = require('../Middlewares/AdminMiddleware');
 

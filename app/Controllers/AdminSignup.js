@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const adminModel = require('../Models/Admin.js');
-const { AdminSignupSchema } = require("../Validations/Validation.js");
+const adminModel = require('../models/adminModel.js');
+const { adminSignupSchema } = require("../validations/validation.js");
 
 
-const AdminSignup = async (req, res) => {
+const adminSignup = async (req, res) => {
     try {
         const userBody = req.body;
-        const response = AdminSignupSchema.safeParse(userBody);
+        const response = adminSignupSchema.safeParse(userBody);
         if (response.success) {
             const existingUser = await adminModel.findOne({ email: userBody.email });
             if (existingUser) {
@@ -31,4 +31,4 @@ const AdminSignup = async (req, res) => {
     }
 };
 
-module.exports = AdminSignup;
+module.exports = adminSignup;

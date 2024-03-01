@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const adminRoutes = require('./app/Routes/AdminRoutes');
-const UserRoutes = require('./app/Routes/UserRoutes.js');
+const adminRoutes = require('./app/routes/adminRoutes.js');
+const userRoutes = require('./app/routes/userRoutes.js');
 require('dotenv').config();
 
 
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/admin', adminRoutes);
-app.use('/user', UserRoutes);
+app.use('/user', userRoutes);
 
 mongoose.connect(
   process.env.MONGODB_URI,
