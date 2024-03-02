@@ -1,6 +1,6 @@
-const foodModel = require('../models/foodModel.js');
-const { addNewItemSchema } = require("../validations/validation.js");
-const cloudinary = require("../config/cloudinaryConfig.js");
+import FoodModel from '../models/foodModel.mjs';
+import { addNewItemSchema } from "../validations/validation.mjs";
+import cloudinary from "../config/cloudinaryConfig.mjs";
 
 const adminAddItem = async (req, res) => {
     try {
@@ -16,7 +16,7 @@ const adminAddItem = async (req, res) => {
         if (!response.success) {
             return res.status(400).send({ error: response.error.issues });
         }
-        const newItem = new foodModel(body);
+        const newItem = new FoodModel(body);
         await newItem.save();
         res.send("Item added successfully");
     } catch (error) {
@@ -25,4 +25,4 @@ const adminAddItem = async (req, res) => {
     }
 };
 
-module.exports = adminAddItem;
+export default adminAddItem;

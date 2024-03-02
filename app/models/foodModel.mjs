@@ -1,14 +1,15 @@
-const mongoose = require("mongoose")
+import mongoose from 'mongoose';
 
-
-const foodModel = new mongoose.Schema({
+const foodSchema = new mongoose.Schema({
     itemName: { type: String, required: true },
     itemCategory: { type: String, required: true },
     itemImage: { type: String, required: true },
     itemPrice: { type: Number, required: true },
     itemDescription: { type: String, required: true },
     itemType: { type: String, required: false }
-}, { timestamps: true })
+}, { timestamps: true });
 
+const FoodItem = mongoose.model("foodItems", foodSchema);
 
-module.exports = mongoose.model("foodItems", foodModel);
+export default FoodItem;
+

@@ -1,20 +1,19 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const adminModel = require('../models/adminModel.js');
-const { adminSignupSchema } = require("../validations/validation.js");
-
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import Admin from '../models/adminModel.mjs';
+import { adminSignupSchema } from "../validations/validation.mjs";
 
 const adminSignup = async (req, res) => {
     try {
         const userBody = req.body;
         const response = adminSignupSchema.safeParse(userBody);
         if (response.success) {
-            const existingUser = await adminModel.findOne({ email: userBody.email });
+            const existingUser = await Admin.findOne({ email: userBody.email });
             if (existingUser) {
                 return res.status(400).send({ msg: 'User with this email already exists' });
             }
             const hashedPassword = await bcrypt.hash(userBody.password, 10);
-            const newUser = new adminModel({
+            const newUser = new Admin({
                 email: userBody.email,
                 password: hashedPassword,
                 name: userBody.name,
@@ -31,4 +30,4 @@ const adminSignup = async (req, res) => {
     }
 };
 
-module.exports = adminSignup;
+export default adminSignup;

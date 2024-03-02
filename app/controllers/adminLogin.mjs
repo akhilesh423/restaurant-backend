@@ -1,14 +1,14 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const adminModel = require('../models/adminModel.js');
-const { adminSigninSchema } = require("../validations/validation.js");
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import AdminModel from '../models/adminModel.mjs';
+import { adminSigninSchema } from "../validations/validation.mjs";
 
-const adminSignin = async (req, res) => {
+const adminLogin = async (req, res) => {
     try {
         const userBody = req.body;
         const response = adminSigninSchema.safeParse(userBody);
         if (response.success) {
-            const user = await adminModel.findOne({ email: userBody.email });
+            const user = await AdminModel.findOne({ email: userBody.email });
             if (!user) {
                 return res.status(404).send({ msg: 'User not found' });
             }
@@ -16,7 +16,6 @@ const adminSignin = async (req, res) => {
             if (!passwordMatch) {
                 return res.status(401).send({ msg: 'Invalid email or password' });
             }
-            const jwt = require('jsonwebtoken');
             const token = jwt.sign({ email: user.email }, 'admin_dashboard_bling');
             res.send({ token });
         } else {
@@ -28,4 +27,4 @@ const adminSignin = async (req, res) => {
     }
 };
 
-module.exports = adminSignin;
+export default adminLogin;

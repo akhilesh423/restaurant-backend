@@ -1,4 +1,5 @@
-const zod = require('zod');
+import * as zod from 'zod';
+
 
 const adminSignupSchema = zod.object({
     email: zod.string().email(),
@@ -21,8 +22,5 @@ const addNewItemSchema = zod.object({
 });
 
 
-module.exports = {
-    adminSignupSchema,
-    adminSigninSchema,
-    addNewItemSchema
-};
+export { adminSignupSchema, adminSigninSchema, addNewItemSchema };
+

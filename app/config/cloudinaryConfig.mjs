@@ -1,5 +1,4 @@
-
-const cloudinary = require('cloudinary').v2;
+import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
     cloud_name: 'dss1xnwen',
@@ -7,4 +6,5 @@ cloudinary.config({
     api_secret: 'HVccrsriVtogRP5hHjTz7iuyr5s'
 });
 
-module.exports = cloudinary;
+export default cloudinary;
+

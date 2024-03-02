@@ -1,8 +1,8 @@
-const foodModel = require('../models/foodModel.js');
+import FoodModel from '../models/foodModel.mjs';
 
 const userGetItems = async (req, res) => {
     try {
-        const allItems = await foodModel.find();
+        const allItems = await FoodModel.find();
         res.status(200).send(allItems);
     } catch (err) {
         console.error('Error fetching items:', err);
@@ -10,4 +10,4 @@ const userGetItems = async (req, res) => {
     }
 };
 
-module.exports = userGetItems; 
+export default userGetItems;
