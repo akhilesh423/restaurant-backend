@@ -10,6 +10,7 @@ import adminAddItem from './app/controllers/adminAddItem.mjs';
 import adminGetItems from './app/controllers/adminGetItems.mjs';
 import adminMiddleware from './app/middlewares/adminMiddleware.mjs';
 import userPlacedOrders from "./app/controllers/userPlacedOrders.mjs"
+import adminDeleteItem from './app/controllers/adminDeleteItem.mjs';
 dotenv.config();
 
 const upload = multer({ dest: "uploads/" });
@@ -48,6 +49,8 @@ app.post('/admin/signin', (req, res) => {
 
 app.post('/admin/additem', adminMiddleware, upload.single("itemImage"), adminAddItem);
 app.get('/admin/getItems', adminMiddleware, adminGetItems)
+app.delete('/admin/deleteItem/:id', adminMiddleware, adminDeleteItem);
+
 
 
 mongoose.connect(
