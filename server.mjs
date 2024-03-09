@@ -51,7 +51,7 @@ app.post('/admin/signin', (req, res) => {
 app.post('/admin/additem', adminMiddleware, upload.single("itemImage"), adminAddItem);
 app.get('/admin/getItems', adminMiddleware, adminGetItems)
 app.delete('/admin/deleteItem/:id', adminMiddleware, adminDeleteItem);
-app.put("/admin/updateItem/:id", adminMiddleware, adminUpdateItem)
+app.put("/admin/updateItem/:id", adminMiddleware, upload.single("itemImage"), adminUpdateItem)
 
 
 
