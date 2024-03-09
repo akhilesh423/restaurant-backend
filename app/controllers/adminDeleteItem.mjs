@@ -2,7 +2,7 @@ import FoodItem from "../models/foodModel.mjs";
 
 const adminDeleteItem = async (req, res) => {
     try {
-        const itemId = req.query.id;
+        const itemId = req.params.id;
 
         if (!itemId) {
             return res.status(400).json({ message: "Item ID is required" });
