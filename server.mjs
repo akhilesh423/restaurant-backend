@@ -9,6 +9,7 @@ import adminLogin from './app/controllers/adminLogin.mjs'
 import adminAddItem from './app/controllers/adminAddItem.mjs';
 import adminGetItems from './app/controllers/adminGetItems.mjs';
 import adminMiddleware from './app/middlewares/adminMiddleware.mjs';
+import userPlacedOrders from "./app/controllers/userPlacedOrders.mjs"
 dotenv.config();
 
 const upload = multer({ dest: "uploads/" });
@@ -32,6 +33,10 @@ app.get('/', (req, res) => {
 app.get('/user/items', (req, res) => {
   userGetItems(req, res)
 });
+
+app.post('/user/placedOrders', (req, res) => {
+  userPlacedOrders(req, res)
+})
 
 app.post('/admin/signup', (req, res) => {
   adminSignup(req, res)

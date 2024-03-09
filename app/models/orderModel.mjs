@@ -9,9 +9,10 @@ const orderSchema = new mongoose.Schema({
     }
   ],
   totalPrice: { type: Number },
+  phoneNumber: { type: Number, required: true },
   placedAt: {
     type: Date,
-    default: () => Date.now(),
+    default: new Date(),
     immutable: true,
   },
 }, { timestamps: true });
