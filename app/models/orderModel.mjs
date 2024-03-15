@@ -1,14 +1,10 @@
 import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
-  room: { type: String, required: true },
-  foodItems: [
-    {
-      foodItem: { type: mongoose.Types.ObjectId, ref: "foodItems", required: true },
-      quantity: { type: Number, required: true },
-    }
-  ],
-  totalPrice: { type: Number },
+  roomName: { type: String, required: true },
+  instructions: { type: String, required: false },
+  orders: [],
+  totalPrice: { type: Number, required: true },
   phoneNumber: { type: Number, required: true },
   placedAt: {
     type: Date,
