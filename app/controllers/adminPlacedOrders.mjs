@@ -2,7 +2,9 @@ import OrderModel from "../models/orderModel.mjs";
 
 const adminPlacedOrders = async (req, res) => {
     try {
-        const allItems = await OrderModel.find();
+        // Fetch all orders and sort them by createdAt field in descending order
+        const allItems = await OrderModel.find().sort({ createdAt: -1 });
+
         res.status(200).send(allItems);
     } catch (err) {
         console.error('Error fetching items:', err);
