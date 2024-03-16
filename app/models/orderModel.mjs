@@ -6,6 +6,7 @@ const orderSchema = new mongoose.Schema({
   orders: [],
   totalPrice: { type: Number, required: true },
   phoneNumber: { type: Number, required: true },
+  isNew: { type: Boolean, default: true },
   placedAt: {
     type: Date,
     default: new Date(),

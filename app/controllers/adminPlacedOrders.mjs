@@ -1,11 +1,23 @@
 import OrderModel from "../models/orderModel.mjs";
 
 const adminPlacedOrders = async (req, res) => {
-    try {
-        // Fetch all orders and sort them by createdAt field in descending order
-        const allItems = await OrderModel.find().sort({ createdAt: -1 });
+    const page = parseInt(req.query.page) || 1;
+    const perPage = parseInt(req.query.limit) || 10;
 
-        res.status(200).send(allItems);
+    try {
+        const totalCount = await OrderModel.countDocuments();
+        const totalPages = Math.ceil(totalCount / perPage);
+
+        const orders = await OrderModel.find()
+            .sort({ createdAt: -1 })
+            .skip((page - 1) * perPage)
+            .limit(perPage);
+
+        res.status(200).json({
+            orders,
+            totalPages,
+            currentPage: page
+        });
     } catch (err) {
         console.error('Error fetching items:', err);
         res.status(500).send({ msg: "Internal server error." });
